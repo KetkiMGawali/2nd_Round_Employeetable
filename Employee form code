@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Employee Form Using the JPDB API</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+    
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">    
+            <div class="page-header text-center">
+
+            <h2>Employee form using the JPDB API</h2>
+            </div>
+            <form id="empForm" method="get">
+                <div class="form-group">
+                    <label>Employee ID:</label>
+                        <input type="text" class="form-control" name="empid" id="empId"
+                           onchange=getEmp()>
+                </div>
+                <div class="form-group">
+                    <label>Employee Name:</label>
+                        <input type="text" class="form-control" id="empname"  >
+                       
+                 </div>     
+                  
+                 <div class="form-group">
+                    <label>Employee Salary:</label>
+                        <input type="text" class="form-control" id="empsal"  >
+                 </div>     
+                 
+                 <div class="form-group">
+                    <label>HRA:</label>
+                        <input type="text" class="form-control" id="hra"  >
+                 </div>     
+                    
+                     <div class="form-group">
+                    <label>DA:</label>
+                        <input type="text" class="form-control" id="da"  >
+                 </div>      
+                    
+                  <div class="form-group">
+                    <label>Deduction:</label>
+                        <input type="text" class="form-control" id="deduction"  >
+                 </div>     
+                    
+             <div class="form-group text-center">
+                <button type="button" class="btn btn-primary" id="save" value="save"
+                        onclick="savedata()" disabled>SAVE</button>
+                 
+                 <button type="button" class="btn btn-primary" id="change" value="change"
+                        onclick="changedata()" disabled>CHANGE</button>
+                 
+                 <button type="button" class="btn btn-primary" id="reset" value="reset"
+                        onclick="resetform()" disabled>RESET</button>
+                 
+                 
+               </div>  
+            </form>
+        </div>
+        </body>
+</html>
+
+        
+
+                             
+   
