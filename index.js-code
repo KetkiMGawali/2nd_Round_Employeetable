@@ -1,0 +1,125 @@
+/* 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
+ */
+
+var jpdbBaseURL = "http://api.login2explore.com:5577";
+var jpdbIRL="/api/irl";
+var jpdbIML="/api/iml";
+var empDBName="EMP.DB";
+var emprelName="EmpData";
+var connToken="90938213|-31949270514741285|90955058";
+$("#empid").focus();
+function resetform()
+{
+    $("#empid").val("");
+     $("#empname").val("");
+      $("#empsal").val("");
+       $("#hra").val("");
+        $("#da").val("");
+         $("#deduction").val("");
+         $("#empid").prop("disabled",false);
+          $("#save").prop("disabled",true);
+           $("#change").prop("disabled",true);
+            $("#reset").prop("disabled",true);
+            $("#empid").focus();
+}
+
+ function savedata() {
+                    var jsonStr = validateData();
+                    if (jsonStr === "") {
+                        return "";
+                        
+                    }
+                    
+                    var putRequest = createPUTRequest(connToken, jsonStrObj, empDBName, emprelName);
+                  jQuery.ajaxSetup({async: false});
+                  var resJsonObj=executeCommandAtGivenBaseUrl(putRequest,jpdbBaseURL,jpdbIML);
+                    jQuery.ajaxSetup({async: true});
+                   resetForm();
+                    $("#empid").focus();
+
+ }   
+                   
+                    
+// This method is used to create PUT Json request.
+                function createPUTRequest(connToken, jsonStrObj, empDBName, emprelName) {
+                    var putRequest = "{\n"
+                            + "\"token\" : \""
+                            + connToken
+                            + "\","
+                            + "\"dbName\": \""
+                            + empDBName
+                            + "\",\n" + "\"cmd\" : \"PUT\",\n"
+                            + "\"rel\" : \""
+                            + emprelName+ "\","
+                            + "\"jsonStr\": \n"
+                            + jsonStrObj
+                            + "\n"
+                            + "}";
+                    return putRequest;
+                }
+
+function Changedata()
+{
+      $("#change").prop("disabled",true);
+      jsonChg= validatdata();
+      var updateRequest=createUPDATERecordRequest(connToken, jsonChg, empDBName, emprelName,localStorage.getIem());
+      jQuery.ajaxSetup({async: false})
+      var resJsonObj=executeCommandAtGivenBaseUrl(updateRequest,jpdbBaseURL,jpdbIML);
+       jQuery.ajaxSetup({async: true});
+       console.log(resJsonObj);
+       resetform();
+        $("#empid").focus();
+}
+
+function validatedata()
+{
+    var empid,empname,empsal,hra,da,ded;
+     empid= $("#empid").val();
+     empname=$("#empname").val();
+      empsal=$("#empsal").val();
+       hra=$("#hra").val();
+        da=$("#da").val();
+         ded=$("#deduction").val();
+         if(empid === " ")
+         {
+             alert("Emp id is missiog");
+                $("#empid").focus();
+                return "";
+         }
+          if(empname === " ")
+         {
+             alert("Emp name is missiog");
+                $("#empname").focus();
+                return "";
+         }
+         
+          if(empsal === " ")
+         {
+             alert("Emp salary is missiog");
+                $("#empsal").focus();
+                return "";
+         }
+         
+          if(hra === " ")
+         {
+             alert("Emp hra is missiog");
+                $("#hra").focus();
+                return "";
+         }
+         
+          if(da === " ")
+         {
+             alert("Emp da is missiog");
+                $("#da").focus();
+                return "";
+         }
+         
+          if(ded === " ")
+         {
+             alert("Emp deduction is missiog");
+                $("#ded").focus();
+                return "";
+         }
+}
